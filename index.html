@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WildDepth: A Multimodal Dataset for 3D Wildlife Perception and Depth Estimation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #2e7d32;
+      --green-light: #e8f5e9;
+      --green-dark: #1b5e20;
+      --text: #333;
+      --text-light: #666;
+      --bg: #fff;
+      --card-bg: #fafafa;
+      --border: #e0e0e0;
+      --max-width: 960px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 48px;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .venue-badge {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .authors {
+      color: var(--text-light);
+      font-size: 1rem;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-dark);
+    }
+
+    .btn-outline {
+      border: 1.5px solid var(--green);
+      color: var(--green);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--green-light);
+    }
+
+    /* Sections */
+    section {
+      padding: 48px 0;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--green);
+      margin: 0 auto 32px;
+      border-radius: 2px;
+    }
+
+    /* Abstract */
+    .abstract p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: var(--text-light);
+      text-align: justify;
+    }
+
+    /* Location Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card .location {
+      font-size: 0.85rem;
+      color: var(--green);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .card ul li::before {
+      content: "\2022";
+      color: var(--green);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+    }
+
+    /* Figures */
+    .figure {
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .figure img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .figure figcaption {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .figure-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .figure-row .figure {
+      margin-bottom: 0;
+    }
+
+    /* Data Viewer CTA */
+    .viewer-cta {
+      background: var(--green-light);
+      border-radius: 16px;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .viewer-cta h2 {
+      margin-bottom: 12px;
+    }
+
+    .viewer-cta p {
+      max-width: 560px;
+      margin: 0 auto 24px;
+      color: var(--text-light);
+    }
+
+    /* Citation */
+    .citation-block {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .citation-block pre {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .copy-btn:hover {
+      background: var(--green-dark);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.6rem; }
+      .figure-row { grid-template-columns: 1fr; }
+      section { padding: 32px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="venue-badge">Preprint</span>
+    <h1>WildDepth: A Multimodal Dataset for<br>3D Wildlife Perception and Depth Estimation</h1>
+    <p class="authors">
+      Muhammad Aamir<sup>1</sup>, Xinyu Hou<sup>1</sup>, Jiaxing Jhong<sup>1</sup>, Andrew Markham<sup>1</sup>, Naoya Muramatsu<sup>2</sup>, Amir Patel<sup>3</sup>, Sangyun Shin<sup>1</sup>, Matthew Wijers<sup>1</sup><br>
+      <small><sup>1</sup>University of Oxford &nbsp; <sup>2</sup>University of Cape Town &nbsp; <sup>3</sup>University College London</small><br>
+      <small><strong>Author order is alphabetical by last name and does not reflect individual's contribution (preprint version).</strong></small>
+    </p>
+    <div class="buttons">
+      <!-- TODO: Add PDF link -->
+      <a href="#" class="btn btn-primary">Paper PDF</a>
+      <a href="https://cps-desktop-large.taile8ded7.ts.net/" class="btn btn-outline" target="_blank">Data Viewer</a>
+      <!-- TODO: Add GitHub repo URL -->
+      <a href="#" class="btn btn-outline">GitHub</a>
+      <a href="#citation" class="btn btn-outline">BibTeX</a>
+    </div>
+  </header>
+
+  <!-- Abstract -->
+  <section class="abstract">
+    <div class="container">
+      <h2>Abstract</h2>
+      <div class="divider"></div>
+      <p>
+        Depth estimation and 3D reconstruction have been extensively studied as core topics in computer vision. Starting from rigid objects with relatively simple geometric shapes, such as vehicles, the research has expanded to address general objects, including challenging deformable objects, such as humans and animals. In particular, for the animal, however, the majority of the existing models are trained based on datasets without metric scale, which can help validate image-only models. To address this limitation, we present <strong>WildDepth</strong>, a multimodal dataset and benchmark suite for depth estimation, behavior detection, and 3D reconstruction from diverse categories of animals ranging from domestic to wild environments with synchronized RGB and LiDAR. Experimental results show that the use of multi-modal data improves depth reliability by up to 10% RMSE, while RGB&ndash;LiDAR fusion enhances 3D reconstruction fidelity by 12% in Chamfer distance. By releasing WildDepth and its benchmarks, we aim to foster robust multimodal perception systems that generalize across domains.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dataset at a Glance -->
+  <section>
+    <div class="container">
+      <h2>Dataset at a Glance</h2>
+      <div class="divider"></div>
+      <div class="cards">
+        <div class="card">
+          <h3>Kgalagadi</h3>
+          <div class="location">South Africa</div>
+          <ul>
+            <li>Apex predators &amp; large herbivores</li>
+            <li>Lions, cheetahs, leopards, springbok, gemsbok</li>
+            <li>13-day field survey</li>
+            <li>RGB + LiDAR (zoom-lens setup)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Bubye Valley</h3>
+          <div class="location">Zimbabwe</div>
+          <ul>
+            <li>6 species incl. giraffes, zebras, warthogs</li>
+            <li>84,700 synchronized frames</li>
+            <li>4K RGB + Livox Mid-70 LiDAR</li>
+            <li>Private wildlife conservancy</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Longleat Safari Park</h3>
+          <div class="location">United Kingdom</div>
+          <ul>
+            <li>10+ species in controlled environment</li>
+            <li>42,500 synchronized frames</li>
+            <li>RGB + Livox Avia LiDAR</li>
+            <li>Diverse body morphologies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Showcase -->
+  <section>
+    <div class="container">
+      <h2>Visual Showcase</h2>
+      <div class="divider"></div>
+
+      <div class="figure">
+        <img src="assets/RGB_Lidar_points.png" alt="RGB and LiDAR colored point cloud overlay">
+        <figcaption>Synchronized RGB imagery with LiDAR colored point cloud overlay.</figcaption>
+      </div>
+
+      <div class="figure">
+        <img src="assets/CVPR_mde_lidar_depthmap_v2.png" alt="Monocular depth estimation compared to LiDAR ground truth">
+        <figcaption>Monocular depth estimation: RGB input, predicted depth map, and LiDAR ground truth.</figcaption>
+      </div>
+
+      <div class="figure">
+        <img src="assets/3d_reconstructionV2.png" alt="3D reconstruction results">
+        <figcaption>3D reconstruction results from multimodal inputs.</figcaption>
+      </div>
+
+      <div class="figure-row">
+        <div class="figure">
+          <img src="assets/29299.png" alt="Wildlife sample frame">
+          <figcaption>Sample detection frame from field data.</figcaption>
+        </div>
+        <div class="figure">
+          <img src="assets/11130.png" alt="Wildlife sample frame">
+          <figcaption>Sample behavior detection frame.</figcaption>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Viewer -->
+  <section>
+    <div class="container">
+      <div class="viewer-cta">
+        <h2>Explore the Data</h2>
+        <p>Browse synchronized RGB and LiDAR recordings, 3D point clouds, and depth maps interactively in our live data viewer.</p>
+        <a href="https://cps-desktop-large.taile8ded7.ts.net/" class="btn btn-primary" target="_blank">Open Data Viewer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Citation -->
+  <section id="citation">
+    <div class="container">
+      <h2>Citation</h2>
+      <div class="divider"></div>
+      <div class="citation-block">
+        <button class="copy-btn" onclick="copyBibtex()">Copy</button>
+        <pre id="bibtex">@inproceedings{wilddepth2025,
+  title     = {WildDepth: A Multimodal Dataset for 3D Wildlife Perception and Depth Estimation},
+  author    = {Aamir, Muhammad and Hou, Xinyu and Jhong, Jiaxing and Markham, Andrew and Muramatsu, Naoya and Patel, Amir and Shin, Sangyun and Wijers, Matthew},
+  year      = {2025},
+  note      = {Preprint}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>WildDepth &mdash; 2025</p>
+    </div>
+  </footer>
+
+  <script>
+    function copyBibtex() {
+      const text = document.getElementById('bibtex').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
