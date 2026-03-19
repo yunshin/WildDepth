@@ -558,8 +558,49 @@
     const VIDEO_SUFFIX = LOCAL_MODE ? "" : "?download=1";
 
     const snippets = {
-      July07: [1,6,7,8,9,10,11,12,13,16,17,19,20,21,23,24,25,26,27,28,29],
-      July08: [1,2,3,4,5,10,11,12,15,17,18,19,20,21,25,28,32,33],
+      July07: [
+        {n:1, species:"Ostrich", desc:"Single ostrich walking"},
+        {n:6, species:"Giraffe", desc:"One giraffe walking left to right"},
+        {n:7, species:"Giraffe", desc:"Multiple giraffes walking"},
+        {n:8, species:"Giraffe", desc:"2 giraffes walking"},
+        {n:9, species:"Giraffe", desc:"Multiple giraffes walking"},
+        {n:10, species:"Wildebeest", desc:"1 wildebeest grazing"},
+        {n:11, species:"Bull", desc:"Multiple bulls, one standing, multiple grazing"},
+        {n:12, species:"Bull", desc:"Multiple bulls walking"},
+        {n:13, species:"Camel", desc:"One camel walking, drinking water"},
+        {n:16, species:"Bull", desc:"Multiple bulls grazing"},
+        {n:17, species:"Bull", desc:"Multiple bulls grazing"},
+        {n:19, species:"Camel", desc:"One camel grazing"},
+        {n:20, species:"Horned Oryx", desc:"Multiple oryx grazing"},
+        {n:21, species:"Horned Oryx", desc:"Multiple oryx grazing"},
+        {n:23, species:"Eland", desc:"Multiple eland grazing, walking"},
+        {n:24, species:"Eland", desc:"Multiple eland walking"},
+        {n:25, species:"Lion", desc:"Multiple lions sleeping"},
+        {n:26, species:"Lion", desc:"Multiple lions sitting"},
+        {n:27, species:"Lion", desc:"Two lions sitting"},
+        {n:28, species:"Lion", desc:"One lion walking"},
+        {n:29, species:"Wolf", desc:"Multiple wolves sitting, walking"},
+      ],
+      July08: [
+        {n:1, species:"Eland", desc:"Multiple elands grazing"},
+        {n:2, species:"Tiger", desc:"Tiger running from far to close"},
+        {n:3, species:"Tiger", desc:"Tiger walking"},
+        {n:4, species:"Tiger", desc:"Multiple tigers eating, sitting, walking"},
+        {n:5, species:"Tiger", desc:"Multiple tigers sitting"},
+        {n:10, species:"Lion", desc:"Lion walking, standing"},
+        {n:11, species:"Lion", desc:"Lion walking"},
+        {n:12, species:"Lion", desc:"Multiple lions walking"},
+        {n:15, species:"Cheetah", desc:"Cheetah sitting in grass, dense vegetation"},
+        {n:17, species:"Cheetah", desc:"Cheetah walking"},
+        {n:18, species:"Cheetah", desc:"Cheetah walking"},
+        {n:19, species:"Wolf", desc:"One wolf sitting, second wolf walking"},
+        {n:20, species:"Wolf", desc:"One wolf sitting, second wolf walking"},
+        {n:21, species:"Wolf", desc:"Wolf walking"},
+        {n:25, species:"Camel", desc:"Multiple camels sitting, walking"},
+        {n:28, species:"Camel", desc:"Multiple camels grazing, walking"},
+        {n:32, species:"Bull", desc:"Multiple bulls grazing, walking"},
+        {n:33, species:"Bull", desc:"Multiple bulls grazing"},
+      ],
     };
 
     let currentTab = "July07";
@@ -573,12 +614,12 @@
     function buildGrid(month) {
       const grid = document.getElementById(`grid-${month}`);
       grid.innerHTML = "";
-      snippets[month].forEach(num => {
+      snippets[month].forEach(s => {
         const el = document.createElement("div");
         el.className = "snippet-thumb";
-        el.id = `thumb-${month}-${num}`;
-        el.innerHTML = `<span class="snippet-num">${num}</span>Snippet ${num}`;
-        el.onclick = () => playSnippet(month, num);
+        el.id = `thumb-${month}-${s.n}`;
+        el.innerHTML = `<span class="snippet-num">${s.species}</span><span style="font-size:0.75rem;color:#999;">${s.desc}</span>`;
+        el.onclick = () => playSnippet(month, s);
         grid.appendChild(el);
       });
     }
@@ -591,10 +632,10 @@
       document.getElementById("grid-July08").style.display = month === "July08" ? "grid" : "none";
     }
 
-    function playSnippet(month, num) {
+    function playSnippet(month, s) {
       // Update active thumbnail
       document.querySelectorAll(".snippet-thumb").forEach(t => t.classList.remove("active"));
-      const thumb = document.getElementById(`thumb-${month}-${num}`);
+      const thumb = document.getElementById(`thumb-${month}-${s.n}`);
       if (thumb) thumb.classList.add("active");
 
       const video = document.getElementById("videoEl");
@@ -603,10 +644,10 @@
 
       placeholder.style.display = "none";
       video.style.display = "block";
-      video.src = videoUrl(month, num);
+      video.src = videoUrl(month, s.n);
       video.play();
-      caption.textContent = `${month} \u2014 Snippet ${num} (RGB | LiDAR overlay | Depth map)`;
-      currentSnippet = { month, num };
+      caption.textContent = `${month} \u2014 ${s.species}: ${s.desc}`;
+      currentSnippet = { month, n: s.n };
     }
 
     // Build grids on load
