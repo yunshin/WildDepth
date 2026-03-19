@@ -220,6 +220,107 @@
       color: var(--text-light);
     }
 
+    /* Video Gallery */
+    .gallery-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .gallery-tab {
+      padding: 8px 24px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--card-bg);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-light);
+      transition: all 0.2s;
+    }
+
+    .gallery-tab:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .gallery-tab.active {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .snippet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .snippet-thumb {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    .snippet-thumb:hover {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--green-light);
+    }
+
+    .snippet-thumb.active {
+      border-color: var(--green);
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 600;
+    }
+
+    .snippet-thumb .snippet-num {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .video-player {
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .video-player video {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
+    .video-player .video-caption {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .video-placeholder {
+      background: var(--card-bg);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 80px 24px;
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
     /* Citation */
     .citation-block {
       position: relative;
@@ -289,11 +390,9 @@
       matthew.wijers@biology.ox.ac.uk, mrmnao001@myuct.ac.za, amir.patel@ucl.ac.uk</small>
     </p>
     <div class="buttons">
-      <!-- TODO: Add PDF link -->
-      <a href="#" class="btn btn-primary">Paper PDF</a>
-      <a href="https://cps-desktop-large.taile8ded7.ts.net/" class="btn btn-outline" target="_blank">Data Viewer</a>
-      <!-- TODO: Add GitHub repo URL -->
-      <a href="#" class="btn btn-outline">GitHub</a>
+      <a href="http://arxiv.org/abs/2603.16816" class="btn btn-primary" target="_blank">Paper PDF</a>
+      <a href="https://zenodo.org/records/19103277" class="btn btn-outline" target="_blank">Dataset</a>
+      <a href="#gallery" class="btn btn-outline">Video Gallery</a>
       <a href="#citation" class="btn btn-outline">BibTeX</a>
     </div>
   </header>
@@ -383,13 +482,35 @@
     </div>
   </section>
 
-  <!-- Data Viewer -->
-  <section>
+  <!-- Video Gallery -->
+  <section id="gallery">
     <div class="container">
-      <div class="viewer-cta">
-        <h2>Explore the Data</h2>
-        <p>Browse synchronized RGB and LiDAR recordings, 3D point clouds, and depth maps interactively in our live data viewer.</p>
-        <a href="https://cps-desktop-large.taile8ded7.ts.net/" class="btn btn-primary" target="_blank">Open Data Viewer</a>
+      <h2>Video Gallery</h2>
+      <div class="divider"></div>
+      <p style="text-align:center; color:var(--text-light); margin-bottom:16px;">
+        Each video shows a 3-panel view: RGB input, LiDAR point cloud overlay, and projected depth map.
+        Select a snippet below to preview recordings from the Longleat Safari Park subset.
+      </p>
+      <p style="text-align:center; margin-bottom:24px; padding:10px 16px; background:#fff3e0; border:1px solid #ffe0b2; border-radius:8px; color:#e65100; font-size:0.88rem; max-width:640px; margin-left:auto; margin-right:auto;">
+        <strong>Pre-release version.</strong> More data is on the way with further refinement and improved calibrations.
+      </p>
+
+      <div class="gallery-tabs">
+        <button class="gallery-tab active" onclick="switchTab('July07')">July 07 (21 snippets)</button>
+        <button class="gallery-tab" onclick="switchTab('July08')">July 08 (18 snippets)</button>
+      </div>
+
+      <div id="grid-July07" class="snippet-grid"></div>
+      <div id="grid-July08" class="snippet-grid" style="display:none;"></div>
+
+      <div class="video-player">
+        <div id="videoPlaceholder" class="video-placeholder">Select a snippet above to play its video</div>
+        <video id="videoEl" controls style="display:none;"></video>
+        <div id="videoCaption" class="video-caption"></div>
+      </div>
+
+      <div style="text-align:center; margin-top:24px;">
+        <a href="https://zenodo.org/records/19103277" class="btn btn-primary" target="_blank">Download Full Dataset on Zenodo</a>
       </div>
     </div>
   </section>
@@ -427,6 +548,69 @@
         setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
       });
     }
+
+    // --- Video Gallery ---
+    const ZENODO_BASE = "https://zenodo.org/records/19103277/files";
+    // For local preview, override:
+    const LOCAL_MODE = location.hostname !== "yunshin.github.io";
+    const VIDEO_BASE = LOCAL_MODE ? "/videos" : ZENODO_BASE;
+    const VIDEO_SUFFIX = LOCAL_MODE ? "" : "?download=1";
+
+    const snippets = {
+      July07: [1,6,7,8,9,10,11,12,13,16,17,19,20,21,23,24,25,26,27,28,29],
+      July08: [1,2,3,4,5,10,11,12,15,17,18,19,20,21,25,28,32,33],
+    };
+
+    let currentTab = "July07";
+    let currentSnippet = null;
+
+    function videoUrl(month, num) {
+      const fname = `${month}_snippet_${num}_video.mp4`;
+      return `${VIDEO_BASE}/${fname}${VIDEO_SUFFIX}`;
+    }
+
+    function buildGrid(month) {
+      const grid = document.getElementById(`grid-${month}`);
+      grid.innerHTML = "";
+      snippets[month].forEach(num => {
+        const el = document.createElement("div");
+        el.className = "snippet-thumb";
+        el.id = `thumb-${month}-${num}`;
+        el.innerHTML = `<span class="snippet-num">${num}</span>Snippet ${num}`;
+        el.onclick = () => playSnippet(month, num);
+        grid.appendChild(el);
+      });
+    }
+
+    function switchTab(month) {
+      currentTab = month;
+      document.querySelectorAll(".gallery-tab").forEach(t => t.classList.remove("active"));
+      event.target.classList.add("active");
+      document.getElementById("grid-July07").style.display = month === "July07" ? "grid" : "none";
+      document.getElementById("grid-July08").style.display = month === "July08" ? "grid" : "none";
+    }
+
+    function playSnippet(month, num) {
+      // Update active thumbnail
+      document.querySelectorAll(".snippet-thumb").forEach(t => t.classList.remove("active"));
+      const thumb = document.getElementById(`thumb-${month}-${num}`);
+      if (thumb) thumb.classList.add("active");
+
+      const video = document.getElementById("videoEl");
+      const placeholder = document.getElementById("videoPlaceholder");
+      const caption = document.getElementById("videoCaption");
+
+      placeholder.style.display = "none";
+      video.style.display = "block";
+      video.src = videoUrl(month, num);
+      video.play();
+      caption.textContent = `${month} \u2014 Snippet ${num} (RGB | LiDAR overlay | Depth map)`;
+      currentSnippet = { month, num };
+    }
+
+    // Build grids on load
+    buildGrid("July07");
+    buildGrid("July08");
   </script>
 
 </body>
