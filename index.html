@@ -391,7 +391,7 @@
     </p>
     <div class="buttons">
       <a href="http://arxiv.org/abs/2603.16816" class="btn btn-primary" target="_blank">Paper PDF</a>
-      <a href="https://zenodo.org/records/19103277" class="btn btn-outline" target="_blank">Dataset</a>
+      <a href="#dataset" class="btn btn-outline">Dataset</a>
       <a href="#gallery" class="btn btn-outline">Video Gallery</a>
       <a href="#citation" class="btn btn-outline">BibTeX</a>
     </div>
@@ -488,7 +488,7 @@
       <h2>Video Gallery</h2>
       <div class="divider"></div>
       <p style="text-align:center; color:var(--text-light); margin-bottom:16px;">
-        Each video shows a 3-panel view: RGB input, LiDAR point cloud overlay, and projected depth map.
+        Each video shows a 3-panel view: RGB input, LiDAR point cloud overlay, and depth map / colored point cloud.
         Select a snippet below to preview recordings from the Longleat Safari Park subset.
       </p>
       <p style="text-align:center; margin-bottom:24px; padding:10px 16px; background:#fff3e0; border:1px solid #ffe0b2; border-radius:8px; color:#e65100; font-size:0.88rem; max-width:640px; margin-left:auto; margin-right:auto;">
@@ -496,12 +496,16 @@
       </p>
 
       <div class="gallery-tabs">
-        <button class="gallery-tab active" onclick="switchTab('July07')">July 07 (21 snippets)</button>
-        <button class="gallery-tab" onclick="switchTab('July08')">July 08 (18 snippets)</button>
+        <button class="gallery-tab active" onclick="switchTab('July07')">v1 Jul07 (21)</button>
+        <button class="gallery-tab" onclick="switchTab('July08')">v1 Jul08 (18)</button>
+        <button class="gallery-tab" onclick="switchTab('MorphoCam_July07')">v2 Jul07 (3)</button>
+        <button class="gallery-tab" onclick="switchTab('MorphoCam_July08')">v2 Jul08 (30)</button>
       </div>
 
       <div id="grid-July07" class="snippet-grid"></div>
       <div id="grid-July08" class="snippet-grid" style="display:none;"></div>
+      <div id="grid-MorphoCam_July07" class="snippet-grid" style="display:none;"></div>
+      <div id="grid-MorphoCam_July08" class="snippet-grid" style="display:none;"></div>
 
       <div class="video-player">
         <div id="videoPlaceholder" class="video-placeholder">Select a snippet above to play its video</div>
@@ -510,7 +514,53 @@
       </div>
 
       <div style="text-align:center; margin-top:24px;">
-        <a href="https://zenodo.org/records/19103277" class="btn btn-primary" target="_blank">Download Full Dataset on Zenodo</a>
+        <a href="#dataset" class="btn btn-primary">Download Full Dataset</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dataset Download -->
+  <section id="dataset">
+    <div class="container">
+      <h2>Download Dataset</h2>
+      <div class="divider"></div>
+      <div class="cards">
+        <div class="card">
+          <h3>MorphoCam v1</h3>
+          <div class="location">640&times;480, 68 snippets</div>
+          <ul>
+            <li>RGB + LiDAR + depth maps</li>
+            <li>Per-frame DA3 calibration</li>
+            <li>3-panel videos</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <a href="https://zenodo.org/records/19103277" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (42 GB)</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>MorphoCam v2 — Part 1</h3>
+          <div class="location">1080p rectified, 22 snippets</div>
+          <ul>
+            <li>Rectified RGB (JPEG) + LiDAR depth maps</li>
+            <li>July 07 (all) + July 08 (Part A)</li>
+            <li>Rhino, Cheetah, Camel, Giraffe, Ankole Cow</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <a href="https://zenodo.org/records/19152060" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (38 GB)</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>MorphoCam v2 — Part 2</h3>
+          <div class="location">1080p rectified, 12 snippets</div>
+          <ul>
+            <li>Rectified RGB (JPEG) + LiDAR depth maps</li>
+            <li>July 08 (Part B)</li>
+            <li>Tiger, Lion, Lioness, Wolf, Giraffe</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <a href="https://zenodo.org/records/19154614" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (21 GB)</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -558,6 +608,43 @@
     const VIDEO_SUFFIX = LOCAL_MODE ? "" : "?download=1";
 
     const snippets = {
+      MorphoCam_July07: [
+        {n:"July07/tortoise_1", species:"Tortoise", desc:"Tortoise moving", morphocam:true},
+        {n:"July07/zebra_1", species:"Giraffe", desc:"Multiple giraffes walking", morphocam:true},
+        {n:"July07/zebra_2", species:"Giraffe", desc:"Giraffe walking", morphocam:true},
+      ],
+      MorphoCam_July08: [
+        {n:"July08/tiger_1", species:"Tiger", desc:"Multiple tigers walking", morphocam:true},
+        {n:"July08/tiger_2", species:"Tiger", desc:"Multiple tigers walking and resting", morphocam:true},
+        {n:"July08/lion_1", species:"Lion", desc:"Multiple lions walking", morphocam:true},
+        {n:"July08/lion_2", species:"Lion", desc:"Lion running", morphocam:true},
+        {n:"July08/lion_3", species:"Lion", desc:"Multiple lions walking and jumping", morphocam:true},
+        {n:"July08/lioness_1", species:"Lioness", desc:"Two lionesses walking", morphocam:true},
+        {n:"July08/lioness_2", species:"Lioness", desc:"Multiple lionesses walking", morphocam:true},
+        {n:"July08/lion_4", species:"Lion", desc:"Lion walking and resting", morphocam:true},
+        {n:"July08/cheetah_1", species:"Cheetah", desc:"Cheetah walking", morphocam:true},
+        {n:"July08/wolf_1", species:"Wolf", desc:"Multiple wolves walking", morphocam:true},
+        {n:"July08/camel_1", species:"Camel", desc:"Camel grazing and walking", morphocam:true},
+        {n:"July08/Ankle_cow_1", species:"Ankole Cow", desc:"Cow/ox grazing", morphocam:true},
+        {n:"July08/camel_2", species:"Camel", desc:"Multiple camels resting", morphocam:true},
+        {n:"July08/camel_3", species:"Camel", desc:"Multiple camels resting and grazing", morphocam:true},
+        {n:"July08/camel_4", species:"Camel", desc:"Multiple camels walking", morphocam:true},
+        {n:"July08/Ankle_cow_2", species:"Ankole Cow", desc:"Multiple cows and camel walking", morphocam:true},
+        {n:"July08/oryx_-_ankle_cow_1", species:"Oryx / Ankole Cow", desc:"Multiple oryx and cows grazing", morphocam:true},
+        {n:"July08/Ankle_cow_3", species:"Ankole Cow", desc:"Multiple cows grazing", morphocam:true},
+        {n:"July08/Ankle_cow_4", species:"Ankole Cow", desc:"Multiple cows grazing", morphocam:true},
+        {n:"July08/Ankle_cow_5", species:"Ankole Cow", desc:"Multiple cows grazing", morphocam:true},
+        {n:"July08/Ankle_cow_6", species:"Ankole Cow", desc:"Multiple cows grazing", morphocam:true},
+        {n:"July08/Rhino_1", species:"Rhino", desc:"Two rhinos grazing", morphocam:true},
+        {n:"July08/Rhino_2", species:"Rhino", desc:"Two rhinos grazing", morphocam:true},
+        {n:"July08/Rhino_3", species:"Rhino", desc:"Two rhinos grazing", morphocam:true},
+        {n:"July08/Rhino_4", species:"Rhino", desc:"Two rhinos grazing", morphocam:true},
+        {n:"July08/graffe_1", species:"Giraffe", desc:"Multiple giraffes walking", morphocam:true},
+        {n:"July08/graffe_2", species:"Giraffe", desc:"Multiple giraffes walking and grazing", morphocam:true},
+        {n:"July08/graffe_3", species:"Giraffe", desc:"Two giraffes walking", morphocam:true},
+        {n:"July08/giraffe_4", species:"Giraffe", desc:"Multiple giraffes walking and grazing", morphocam:true},
+        {n:"July08/graffe_5", species:"Giraffe", desc:"Multiple giraffes and ostriches walking and grazing", morphocam:true},
+      ],
       July07: [
         {n:1, species:"Ostrich", desc:"Single ostrich walking"},
         {n:6, species:"Giraffe", desc:"One giraffe walking left to right"},
@@ -606,10 +693,26 @@
     let currentTab = "July07";
     let currentSnippet = null;
 
-    function videoUrl(month, num) {
+    // MorphoCam Zenodo records
+    const ZENODO_MC_R1 = "https://zenodo.org/records/19152060/files";
+    const ZENODO_MC_R2 = "https://zenodo.org/records/19154614/files";
+    // Snippets in Record 2
+    const MC_R2_SNIPPETS = ['July08/graffe_3','July08/graffe_5','July08/lion_1','July08/lion_2',
+      'July08/lion_3','July08/lion_4','July08/lioness_1','July08/lioness_2',
+      'July08/oryx_-_ankle_cow_1','July08/tiger_1','July08/tiger_2','July08/wolf_1'];
+
+    function videoUrl(month, num, isMorphocam) {
+      if (isMorphocam) {
+        if (LOCAL_MODE) return `/morphocam_release/${num}/video.mp4`;
+        const fname = num.replace('/', '_') + '_video.mp4';
+        const base = MC_R2_SNIPPETS.includes(num) ? ZENODO_MC_R2 : ZENODO_MC_R1;
+        return `${base}/${fname}?download=1`;
+      }
       const fname = `${month}_snippet_${num}_video.mp4`;
       return `${VIDEO_BASE}/${fname}${VIDEO_SUFFIX}`;
     }
+
+    const allTabs = ['MorphoCam_July07', 'MorphoCam_July08', 'July07', 'July08'];
 
     function buildGrid(month) {
       const grid = document.getElementById(`grid-${month}`);
@@ -628,8 +731,9 @@
       currentTab = month;
       document.querySelectorAll(".gallery-tab").forEach(t => t.classList.remove("active"));
       event.target.classList.add("active");
-      document.getElementById("grid-July07").style.display = month === "July07" ? "grid" : "none";
-      document.getElementById("grid-July08").style.display = month === "July08" ? "grid" : "none";
+      allTabs.forEach(t => {
+        document.getElementById(`grid-${t}`).style.display = t === month ? "grid" : "none";
+      });
     }
 
     function playSnippet(month, s) {
@@ -644,13 +748,15 @@
 
       placeholder.style.display = "none";
       video.style.display = "block";
-      video.src = videoUrl(month, s.n);
+      video.src = videoUrl(month, s.n, s.morphocam);
       video.play();
       caption.textContent = `${month} \u2014 ${s.species}: ${s.desc}`;
       currentSnippet = { month, n: s.n };
     }
 
     // Build grids on load
+    buildGrid("MorphoCam_July07");
+    buildGrid("MorphoCam_July08");
     buildGrid("July07");
     buildGrid("July08");
   </script>
