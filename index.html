@@ -500,12 +500,14 @@
         <button class="gallery-tab" onclick="switchTab('July08')">v1 Jul08 (18)</button>
         <button class="gallery-tab" onclick="switchTab('MorphoCam_July07')">v2 Jul07 (3)</button>
         <button class="gallery-tab" onclick="switchTab('MorphoCam_July08')">v2 Jul08 (30)</button>
+        <button class="gallery-tab" onclick="switchTab('Zimbabwe')">Zimbabwe (37)</button>
       </div>
 
       <div id="grid-July07" class="snippet-grid"></div>
       <div id="grid-July08" class="snippet-grid" style="display:none;"></div>
       <div id="grid-MorphoCam_July07" class="snippet-grid" style="display:none;"></div>
       <div id="grid-MorphoCam_July08" class="snippet-grid" style="display:none;"></div>
+      <div id="grid-Zimbabwe" class="snippet-grid" style="display:none;"></div>
 
       <div class="video-player">
         <div id="videoPlaceholder" class="video-placeholder">Select a snippet above to play its video</div>
@@ -559,6 +561,30 @@
           </ul>
           <div style="margin-top:12px;">
             <a href="https://zenodo.org/records/19154614" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (21 GB)</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Zimbabwe — Part 1</h3>
+          <div class="location">1080p rectified, 17 snippets</div>
+          <ul>
+            <li>Rectified RGB (JPEG) + LiDAR depth maps</li>
+            <li>Bubye Valley Conservancy, Zimbabwe</li>
+            <li>Donkey, Giraffe, Zebra, Goat</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <a href="https://zenodo.org/records/19351839" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (46 GB)</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Zimbabwe — Part 2</h3>
+          <div class="location">1080p rectified, 20 snippets</div>
+          <ul>
+            <li>Rectified RGB (JPEG) + LiDAR depth maps</li>
+            <li>Bubye Valley Conservancy, Zimbabwe</li>
+            <li>Goat, Warthog, Zebra, Plover Bird</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <a href="https://zenodo.org/records/19354147" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (38 GB)</a>
           </div>
         </div>
       </div>
@@ -645,6 +671,45 @@
         {n:"July08/giraffe_4", species:"Giraffe", desc:"Multiple giraffes walking and grazing", morphocam:true},
         {n:"July08/graffe_5", species:"Giraffe", desc:"Multiple giraffes and ostriches walking and grazing", morphocam:true},
       ],
+      Zimbabwe: [
+        {n:"donkey_1", species:"Donkey", desc:"Two donkeys grazing at close distance, house in background", zim:true},
+        {n:"donkey_2", species:"Donkey", desc:"Two donkeys grazing at close distance, house in background", zim:true},
+        {n:"donkey_3", species:"Donkey", desc:"Two donkeys grazing at close distance, house in background", zim:true},
+        {n:"donkey_4", species:"Donkey", desc:"Two donkeys grazing at close distance, house in background", zim:true},
+        {n:"donkey_5", species:"Donkey", desc:"Two donkeys grazing at close distance, house in background", zim:true},
+        {n:"donkey_6", species:"Donkey", desc:"Two donkeys grazing, bush in background", zim:true},
+        {n:"donkey_7", species:"Donkey", desc:"Two donkeys grazing, bush in background", zim:true},
+        {n:"donkey_8", species:"Donkey", desc:"Two donkeys grazing, bush in background", zim:true},
+        {n:"donkey_9", species:"Donkey", desc:"Two donkeys grazing, bush in background", zim:true},
+        {n:"giraffe_1", species:"Giraffe", desc:"Giraffe standing then walking, low light", zim:true},
+        {n:"giraffe_2", species:"Giraffe", desc:"Two giraffes, adult and juvenile, walking in distance", zim:true},
+        {n:"giraffe_3", species:"Giraffe", desc:"Two giraffes, adult and juvenile, walking in distance", zim:true},
+        {n:"giraffe_zebra_1", species:"Giraffe + Zebra", desc:"Giraffe and zebra standing on dirt road, far from camera", zim:true},
+        {n:"goat_1", species:"Goat", desc:"Several goats grazing at close distance, bush background", zim:true},
+        {n:"goat_2", species:"Goat", desc:"Several goats grazing at close distance, bush background", zim:true},
+        {n:"goat_3", species:"Goat", desc:"Several goats grazing at close distance, bush background", zim:true},
+        {n:"goat_4", species:"Goat", desc:"Several goats grazing at close distance, bush background", zim:true},
+        {n:"goat_5", species:"Goat", desc:"Several goats grazing at close distance, bush background", zim:true},
+        {n:"goat_6", species:"Goat", desc:"Several goats grazing at close distance, bush background", zim:true},
+        {n:"goat_donkey_1", species:"Goat + Donkey", desc:"Goats and donkeys grazing at close distance, bush background", zim:true},
+        {n:"goat_donkey_2", species:"Goat + Donkey", desc:"Goats and donkeys grazing at close distance, bush background", zim:true},
+        {n:"goat_donkey_3", species:"Goat + Donkey", desc:"Goats and donkey grazing at close distance, bush background", zim:true},
+        {n:"goat_donkey_4", species:"Goat + Donkey", desc:"Goats and donkeys grazing in a pen, bush background with fence", zim:true},
+        {n:"three_banded_plover_bird_1", species:"Plover Bird", desc:"Two plover birds walking around waterhole at close range", zim:true},
+        {n:"warthog_1", species:"Warthog", desc:"Several warthogs feeding and walking at close range", zim:true},
+        {n:"warthog_2", species:"Warthog", desc:"Several warthogs feeding and walking at close range", zim:true},
+        {n:"warthog_3", species:"Warthog", desc:"Warthog walking past waterhole at distance", zim:true},
+        {n:"warthog_4", species:"Warthog", desc:"Warthogs walking past waterhole, one goes through water", zim:true},
+        {n:"warthog_5", species:"Warthog", desc:"Warthog walking past waterhole at distance", zim:true},
+        {n:"warthog_6", species:"Warthog", desc:"Warthogs drinking at waterhole then walking past", zim:true},
+        {n:"zebra_1", species:"Zebra", desc:"Herd of zebra standing then moving left", zim:true},
+        {n:"zebra_2", species:"Zebra", desc:"Herd of zebra standing then moving left", zim:true},
+        {n:"zebra_3", species:"Zebra", desc:"Herd of zebra standing then moving left", zim:true},
+        {n:"zebra_4", species:"Zebra", desc:"Herd of zebra moving left to right across road", zim:true},
+        {n:"zebra_5", species:"Zebra", desc:"Herd of zebra standing on side of road", zim:true},
+        {n:"zebra_6", species:"Zebra", desc:"Herd of zebra moving right to left across road", zim:true},
+        {n:"zebra_7", species:"Zebra", desc:"Zebra standing and walking in distance", zim:true},
+      ],
       July07: [
         {n:1, species:"Ostrich", desc:"Single ostrich walking"},
         {n:6, species:"Giraffe", desc:"One giraffe walking left to right"},
@@ -701,7 +766,19 @@
       'July08/lion_3','July08/lion_4','July08/lioness_1','July08/lioness_2',
       'July08/oryx_-_ankle_cow_1','July08/tiger_1','July08/tiger_2','July08/wolf_1'];
 
-    function videoUrl(month, num, isMorphocam) {
+    // Zimbabwe Zenodo records
+    const ZENODO_ZIM_R1 = "https://zenodo.org/records/19351839/files";
+    const ZENODO_ZIM_R2 = "https://zenodo.org/records/19354147/files";
+    const ZIM_R1_SNIPPETS = ['donkey_1','donkey_2','donkey_3','donkey_4','donkey_5','donkey_6','donkey_7','donkey_8','donkey_9',
+      'giraffe_1','giraffe_2','giraffe_3','giraffe_zebra_1','goat_1','goat_2','goat_3','goat_4'];
+
+    function videoUrl(month, num, isMorphocam, isZim) {
+      if (isZim) {
+        if (LOCAL_MODE) return `/zim_release/${num}/video.mp4`;
+        const fname = num + '_video.mp4';
+        const base = ZIM_R1_SNIPPETS.includes(num) ? ZENODO_ZIM_R1 : ZENODO_ZIM_R2;
+        return `${base}/${fname}?download=1`;
+      }
       if (isMorphocam) {
         if (LOCAL_MODE) return `/morphocam_release/${num}/video.mp4`;
         const fname = num.replace('/', '_') + '_video.mp4';
@@ -712,7 +789,7 @@
       return `${VIDEO_BASE}/${fname}${VIDEO_SUFFIX}`;
     }
 
-    const allTabs = ['MorphoCam_July07', 'MorphoCam_July08', 'July07', 'July08'];
+    const allTabs = ['July07', 'July08', 'MorphoCam_July07', 'MorphoCam_July08', 'Zimbabwe'];
 
     function buildGrid(month) {
       const grid = document.getElementById(`grid-${month}`);
@@ -748,17 +825,18 @@
 
       placeholder.style.display = "none";
       video.style.display = "block";
-      video.src = videoUrl(month, s.n, s.morphocam);
+      video.src = videoUrl(month, s.n, s.morphocam, s.zim);
       video.play();
       caption.textContent = `${month} \u2014 ${s.species}: ${s.desc}`;
       currentSnippet = { month, n: s.n };
     }
 
     // Build grids on load
-    buildGrid("MorphoCam_July07");
-    buildGrid("MorphoCam_July08");
     buildGrid("July07");
     buildGrid("July08");
+    buildGrid("MorphoCam_July07");
+    buildGrid("MorphoCam_July08");
+    buildGrid("Zimbabwe");
   </script>
 
 </body>
