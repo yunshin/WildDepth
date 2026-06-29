@@ -496,22 +496,25 @@
       </p>
 
       <div class="gallery-tabs">
-        <button class="gallery-tab active" onclick="switchTab('July07')">Longleat v1 Jul07 UK (21)</button>
+        <button class="gallery-tab active" onclick="switchTab('Kgalagadi')">Kgalagadi, South Africa (21)</button>
+        <button class="gallery-tab" onclick="switchTab('Zimbabwe')">Bubye Valley, Zimbabwe (37)</button>
+        <button class="gallery-tab" onclick="switchTab('July07')">Longleat v1 Jul07 UK (21)</button>
         <button class="gallery-tab" onclick="switchTab('July08')">Longleat v1 Jul08 UK (18)</button>
         <button class="gallery-tab" onclick="switchTab('MorphoCam_July07')">Longleat v2 Jul07 UK (3)</button>
         <button class="gallery-tab" onclick="switchTab('MorphoCam_July08')">Longleat v2 Jul08 UK (30)</button>
-        <button class="gallery-tab" onclick="switchTab('Zimbabwe')">Bubye Valley, Zimbabwe (37)</button>
       </div>
 
-      <div id="grid-July07" class="snippet-grid"></div>
+      <div id="grid-Kgalagadi" class="snippet-grid"></div>
+      <div id="grid-Zimbabwe" class="snippet-grid" style="display:none;"></div>
+      <div id="grid-July07" class="snippet-grid" style="display:none;"></div>
       <div id="grid-July08" class="snippet-grid" style="display:none;"></div>
       <div id="grid-MorphoCam_July07" class="snippet-grid" style="display:none;"></div>
       <div id="grid-MorphoCam_July08" class="snippet-grid" style="display:none;"></div>
-      <div id="grid-Zimbabwe" class="snippet-grid" style="display:none;"></div>
 
       <div class="video-player">
         <div id="videoPlaceholder" class="video-placeholder">Select a snippet above to play its video</div>
         <video id="videoEl" controls style="display:none;"></video>
+        <iframe id="ytEl" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display:none; width:100%; aspect-ratio:16/9; border-radius:10px; border:1px solid var(--border); background:#000;"></iframe>
         <div id="videoCaption" class="video-caption"></div>
       </div>
 
@@ -527,6 +530,44 @@
       <h2>Download Dataset</h2>
       <div class="divider"></div>
       <div class="cards">
+        <div class="card">
+          <h3>Kgalagadi, South Africa</h3>
+          <div class="location">RGB + LiDAR, zoom-lens setup</div>
+          <ul>
+            <li>Apex predators &amp; large herbivores</li>
+            <li>Lions, cheetahs, leopards, springbok, gemsbok</li>
+            <li>13-day field survey</li>
+            <li>Full raw data on pCloud; RGB videos on YouTube (full-data links in descriptions)</li>
+          </ul>
+          <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px;">
+            <a href="https://u.pcloud.link/publink/show?code=kZVhY95ZsvWD5u82A5bEHCMM6mF9gLqq62EX" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Raw Data (pCloud)</a>
+            <a href="https://youtube.com/playlist?list=PLB9Pwo4Wnh7XQg2RmqRyzIzcOIjPWBh_O" class="btn btn-outline" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Videos (YouTube)</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Bubye Valley, Zimbabwe — Part 1</h3>
+          <div class="location">1080p rectified, 17 snippets</div>
+          <ul>
+            <li>Rectified RGB (JPEG) + LiDAR depth maps</li>
+            <li>Bubye Valley Conservancy, Zimbabwe</li>
+            <li>Donkey, Giraffe, Zebra, Goat</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <a href="https://zenodo.org/records/19371340" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (46 GB)</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Bubye Valley, Zimbabwe — Part 2</h3>
+          <div class="location">1080p rectified, 20 snippets</div>
+          <ul>
+            <li>Rectified RGB (JPEG) + LiDAR depth maps</li>
+            <li>Bubye Valley Conservancy, Zimbabwe</li>
+            <li>Goat, Warthog, Zebra, Plover Bird</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <a href="https://zenodo.org/records/19372084" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (38 GB)</a>
+          </div>
+        </div>
         <div class="card">
           <h3>Longleat v1, UK</h3>
           <div class="location">640&times;480, 68 snippets</div>
@@ -561,30 +602,6 @@
           </ul>
           <div style="margin-top:12px;">
             <a href="https://zenodo.org/records/19154614" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (21 GB)</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Bubye Valley, Zimbabwe — Part 1</h3>
-          <div class="location">1080p rectified, 17 snippets</div>
-          <ul>
-            <li>Rectified RGB (JPEG) + LiDAR depth maps</li>
-            <li>Bubye Valley Conservancy, Zimbabwe</li>
-            <li>Donkey, Giraffe, Zebra, Goat</li>
-          </ul>
-          <div style="margin-top:12px;">
-            <a href="https://zenodo.org/records/19371340" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (46 GB)</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Bubye Valley, Zimbabwe — Part 2</h3>
-          <div class="location">1080p rectified, 20 snippets</div>
-          <ul>
-            <li>Rectified RGB (JPEG) + LiDAR depth maps</li>
-            <li>Bubye Valley Conservancy, Zimbabwe</li>
-            <li>Goat, Warthog, Zebra, Plover Bird</li>
-          </ul>
-          <div style="margin-top:12px;">
-            <a href="https://zenodo.org/records/19372084" class="btn btn-primary" target="_blank" style="font-size:0.82rem;padding:8px 16px;">Download (38 GB)</a>
           </div>
         </div>
       </div>
@@ -753,9 +770,32 @@
         {n:32, species:"Bull", desc:"Multiple bulls grazing, walking"},
         {n:33, species:"Bull", desc:"Multiple bulls grazing"},
       ],
+      Kgalagadi: [
+        {n:"ll2yxquojV0", species:"Lion (male)", desc:"Lion waking up, then walking away", yt:true},  // 639 views
+        {n:"RbBGUA3cDUk", species:"Lion (female)", desc:"Lionesses resting and moving in shade", yt:true},  // 37 views
+        {n:"qILuENqz_fY", species:"Leopard", desc:"Leopard resting in thick bushes", yt:true},  // 0 views
+        {n:"PM35OZinvZU", species:"Cheetah", desc:"Two cheetahs resting and stretching", yt:true},  // 20 views
+        {n:"KJc5Vqeds5c", species:"Hyena", desc:"Hyena walking through grassland", yt:true},  // 0 views
+        {n:"2B001sozHSY", species:"Black-backed jackal", desc:"Jackal drinking at a waterhole", yt:true},  // 15 views
+        {n:"r25pegzXJ5k", species:"Cape fox", desc:"Two Cape foxes near a burrow", yt:true},  // 22 views
+        {n:"P256iClV94g", species:"Honey badger", desc:"Honey badger digging in sand", yt:true},  // 27 views
+        {n:"LOe9Y093HfU", species:"Cape ground squirrel", desc:"Two ground squirrels foraging", yt:true},  // 3 views
+        {n:"wPnZP8QSpTk", species:"Giraffe", desc:"Giraffe standing in grassy clearing", yt:true},  // 190 views
+        {n:"SjSzpWgUCxY", species:"Gemsbok", desc:"Two gemsbok sparring at mud puddle", yt:true},  // 199 views
+        {n:"xYZWeJOYMLw", species:"Kudu", desc:"Kudu walking and grazing in brush", yt:true},  // 39 views
+        {n:"_KsW1ypEeTI", species:"Red hartebeest", desc:"Hartebeest walking across dry terrain", yt:true},  // 30 views
+        {n:"ToYZf4cHHaE", species:"Ostrich", desc:"Ostrich taking a dust bath", yt:true},  // 23 views
+        {n:"Hpd1ceVTR9I", species:"Secretarybird", desc:"Secretarybird drinking water", yt:true},  // 21 views
+        {n:"Tu1pjXvPRAY", species:"Kori bustard", desc:"Kori bustard walking on open ground", yt:true},  // 19 views
+        {n:"eZmWHaxwcgs", species:"Martial eagle", desc:"Martial eagle standing, looking around", yt:true},  // 6 views
+        {n:"NQDDGotblRY", species:"Black-chested snake-eagle", desc:"Snake-eagle perched on bare branch", yt:true},  // 1 views
+        {n:"uJV2GwTvmA4", species:"Pale chanting goshawk", desc:"Goshawk sunbathing, wings spread", yt:true},  // 7 views
+        {n:"4YUM5JcpHBI", species:"Gabar goshawk", desc:"Gabar goshawk perched, then flying off", yt:true},  // 0 views
+        {n:"OG7qwS3EDuA", species:"Snake", desc:"Snake slithering across sandy ground", yt:true},  // 7 views
+      ],
     };
 
-    let currentTab = "July07";
+    let currentTab = "Kgalagadi";
     let currentSnippet = null;
 
     // MorphoCam Zenodo records
@@ -789,7 +829,7 @@
       return `${VIDEO_BASE}/${fname}${VIDEO_SUFFIX}`;
     }
 
-    const allTabs = ['July07', 'July08', 'MorphoCam_July07', 'MorphoCam_July08', 'Zimbabwe'];
+    const allTabs = ['July07', 'July08', 'MorphoCam_July07', 'MorphoCam_July08', 'Zimbabwe', 'Kgalagadi'];
 
     function buildGrid(month) {
       const grid = document.getElementById(`grid-${month}`);
@@ -811,6 +851,9 @@
       allTabs.forEach(t => {
         document.getElementById(`grid-${t}`).style.display = t === month ? "grid" : "none";
       });
+      // Kgalagadi clips stream from YouTube — stop the embed when leaving the tab
+      const yt = document.getElementById("ytEl");
+      if (yt && month !== "Kgalagadi") { yt.src = ""; yt.style.display = "none"; }
     }
 
     function playSnippet(month, s) {
@@ -820,14 +863,27 @@
       if (thumb) thumb.classList.add("active");
 
       const video = document.getElementById("videoEl");
+      const yt = document.getElementById("ytEl");
       const placeholder = document.getElementById("videoPlaceholder");
       const caption = document.getElementById("videoCaption");
 
       placeholder.style.display = "none";
-      video.style.display = "block";
-      video.src = videoUrl(month, s.n, s.morphocam, s.zim);
-      video.play();
-      caption.textContent = `${month} \u2014 ${s.species}: ${s.desc}`;
+      if (s.yt) {
+        // Kgalagadi clips are hosted on YouTube \u2014 embed the individual video
+        video.pause();
+        video.removeAttribute("src");
+        video.style.display = "none";
+        yt.style.display = "block";
+        yt.src = `https://www.youtube.com/embed/${s.n}?rel=0&autoplay=1`;
+        caption.textContent = "";
+      } else {
+        yt.src = "";
+        yt.style.display = "none";
+        video.style.display = "block";
+        video.src = videoUrl(month, s.n, s.morphocam, s.zim);
+        video.play();
+        caption.textContent = `${month} \u2014 ${s.species}: ${s.desc}`;
+      }
       currentSnippet = { month, n: s.n };
     }
 
@@ -837,6 +893,7 @@
     buildGrid("MorphoCam_July07");
     buildGrid("MorphoCam_July08");
     buildGrid("Zimbabwe");
+    buildGrid("Kgalagadi");
   </script>
 
 </body>
