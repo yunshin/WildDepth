@@ -123,6 +123,20 @@
       border-radius: 2px;
     }
 
+    /* Main Video */
+    .main-video {
+      padding-top: 0;
+    }
+
+    .main-video iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
     /* Abstract */
     .abstract p {
       max-width: 760px;
@@ -191,6 +205,15 @@
       color: var(--text-light);
     }
 
+    .figure figcaption a {
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .figure figcaption a:hover {
+      color: var(--green-dark);
+    }
+
     .figure-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -200,6 +223,43 @@
 
     .figure-row .figure {
       margin-bottom: 0;
+    }
+
+    /* Sensor Setup */
+    .rig {
+      margin-bottom: 36px;
+    }
+
+    .rig h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    /* Each figure grows by its image aspect ratio so images in a row share one height */
+    .rig-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .rig-row .figure {
+      flex: var(--ar) 1 0;
+      margin-bottom: 0;
+    }
+
+    /* A lone image is capped near the height of the two-image rows */
+    .rig-row-single {
+      justify-content: center;
+    }
+
+    .rig-row-single .figure {
+      flex: 0 1 460px;
+    }
+
+    .rig-row .figure img {
+      width: 100%;
+      display: block;
     }
 
     /* Data Viewer CTA */
@@ -371,6 +431,7 @@
     @media (max-width: 600px) {
       .hero h1 { font-size: 1.6rem; }
       .figure-row { grid-template-columns: 1fr; }
+      .rig-row { flex-direction: column; }
       section { padding: 32px 0; }
     }
   </style>
@@ -379,7 +440,7 @@
 
   <!-- Hero -->
   <header class="hero">
-    <span class="venue-badge">Preprint</span>
+    <span class="venue-badge">ECCV 2026</span>
     <h1>WildDepth: A Multimodal Dataset for<br>3D Wildlife Perception and Depth Estimation</h1>
     <p class="authors">
       Muhammad Aamir<sup>1</sup>*, Naoya Muramatsu<sup>2</sup>*, Sangyun Shin<sup>1</sup>*, Matthew Wijers<sup>1</sup><br>
@@ -396,6 +457,13 @@
       <a href="#citation" class="btn btn-outline">BibTeX</a>
     </div>
   </header>
+
+  <!-- Main Video -->
+  <section class="main-video">
+    <div class="container">
+      <iframe src="https://www.youtube.com/embed/TtyYPB96Vek?rel=0&autoplay=1&mute=1&playsinline=1" title="WildDepth video" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
 
   <!-- Abstract -->
   <section class="abstract">
@@ -448,6 +516,52 @@
     </div>
   </section>
 
+  <!-- Sensor Setup -->
+  <section>
+    <div class="container">
+      <h2>Sensor Setup</h2>
+      <div class="divider"></div>
+
+      <div class="rig">
+        <h3>Longleat Safari Park, UK</h3>
+        <div class="rig-row">
+          <figure class="figure" style="--ar: 1.333">
+            <img src="assets/longleat_setup.jpg" alt="Livox LiDAR rig, RGB camera and camera trap on tripods at a viewing platform overlooking a giraffe enclosure">
+            <figcaption>Configuration: 2 LiDARs and 2 RGB cameras on tripods.</figcaption>
+          </figure>
+          <figure class="figure" style="--ar: 1.333">
+            <img src="assets/longleat_recording.jpg" alt="Recording a tiger from a vehicle at Longleat Safari Park">
+            <figcaption>Recording from a vehicle.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="rig">
+        <h3>Bubye Valley, Zimbabwe</h3>
+        <div class="rig-row">
+          <figure class="figure" style="--ar: 0.75">
+            <img src="assets/morphocam1.jpg" alt="Two MorphoCam units with LiDAR, RGB camera, GoPro and camera trap in weatherproof housings">
+            <figcaption>Configuration: 2 LiDARs, and 2 RGB cameras in camouflaged housings.</figcaption>
+          </figure>
+          <figure class="figure" style="--ar: 1.333">
+            <img src="assets/morphocam2.jpg" alt="MorphoCam units deployed in savanna with donkeys grazing">
+            <figcaption>Stationary units deployed in the field.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="rig">
+        <h3>Kgalagadi Transfrontier Park, South Africa</h3>
+        <div class="rig-row rig-row-single">
+          <figure class="figure" style="--ar: 1.333">
+            <img src="assets/kgalagadi_wildpose.jpg" alt="WildPose system with a Livox LiDAR and zoom-lens camera on a gimbal, mounted on a vehicle door">
+            <figcaption>Configuration: 1 LiDAR and 1 zoom-lens RGB camera mounted on a vehicle door. Image from <a href="https://github.com/DenDen047/WildPose_v1.1" target="_blank" rel="noopener">WildPose</a>.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Visual Showcase -->
   <section>
     <div class="container">
@@ -487,12 +601,9 @@
     <div class="container">
       <h2>Video Gallery</h2>
       <div class="divider"></div>
-      <p style="text-align:center; color:var(--text-light); margin-bottom:16px;">
+      <p style="text-align:center; color:var(--text-light); margin-bottom:24px;">
         Each video shows a 3-panel view: RGB input, LiDAR point cloud overlay, and depth map / colored point cloud.
         Select a snippet below to preview recordings from the Longleat Safari Park subset.
-      </p>
-      <p style="text-align:center; margin-bottom:24px; padding:10px 16px; background:#fff3e0; border:1px solid #ffe0b2; border-radius:8px; color:#e65100; font-size:0.88rem; max-width:640px; margin-left:auto; margin-right:auto;">
-        <strong>Pre-release version.</strong> More data is on the way with further refinement and improved calibrations.
       </p>
 
       <div class="gallery-tabs">
@@ -615,12 +726,13 @@
       <div class="divider"></div>
       <div class="citation-block">
         <button class="copy-btn" onclick="copyBibtex()">Copy</button>
-        <pre id="bibtex">@article{aamir2026wilddepth,
-  title     = {WildDepth: A Multimodal Dataset for 3D Wildlife Perception and Depth Estimation},
-  author    = {Aamir, Muhammad and Muramatsu, Naoya and Shin, Sangyun and Wijers, Matthew and Zhong, Jia-Xing and Hou, Xinyu and Patel, Amir and Loveridge, Andrew and Markham, Andrew},
-  journal   = {arXiv preprint arXiv:2603.16816},
-  year      = {2026},
-  doi       = {10.48550/arXiv.2603.16816}
+        <pre id="bibtex">@inproceedings{aamir2026wilddepth,
+  title        = {WildDepth: A Multimodal Dataset for 3D Wildlife Perception and Depth Estimation},
+  author       = {Aamir, Muhammad and Muramatsu, Naoya and Shin, Sangyun and Wijers, Matthew and Zhong, Jia-Xing and Hou, Xinyu and Patel, Amir and Loveridge, Andrew and Markham, Andrew},
+  booktitle    = {European Conference on Computer Vision},
+  pages        = {40--58},
+  year         = {2026},
+  organization = {Springer}
 }</pre>
       </div>
     </div>
